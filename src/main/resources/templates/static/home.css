@@ -1,0 +1,47 @@
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 50px 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 20px;
+}
+
+.logo h3 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.social a {
+  color: #fff;
+  font-size: 24px;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.social a:hover {
+  color: #ffcc00;
+  transition: all 0.3s ease-in-out;
+}
+
+.fa-facebook:hover {
+  color: #3b5998;
+}
+
+.fa-twitter:hover {
+  color: #1da1f2;
+}
+
+.fa-instagram:hover {
+  color: #e4405f;
+}
