@@ -20,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -31,6 +32,27 @@ public class BlogController {
 
     @Autowired
     private PostRepository postRepository;
+
+    @GetMapping("/blog/search")
+    public String search(@RequestParam("query") String query, Model model) {
+        List<Post> searchResults = postRepository.findByTitleOrContentLike(query);
+        model.addAttribute("posts", searchResults);
+        return "uni";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @PostMapping("/check")
+    public String login(@RequestParam("password") String password, @RequestParam("login") String login) {
+        if (password.equals("admin") && login.equals("admin")) {
+            return "redirect:/blog";
+        } else {
+            return "redirect:/login";
+        }
+    }
 
     @GetMapping("/getImage")
     public ResponseEntity<Resource> getImage(@RequestParam("fileName") String fileName) throws IOException {
@@ -53,17 +75,15 @@ public class BlogController {
         return "blog";
     }
 
-
     @GetMapping("/blog/uni")
-    public String uni(Model model){
+    public String uni(Model model) {
         Iterable<Post> posts = postRepository.findAll();
         model.addAttribute("posts", posts);
         return ("blog_uni");
     }
 
-
     @GetMapping("/blog/add")
-    public String blogAdd(Model model) {
+    public String blogAdd() {
         return "blog_add";
     }
 
@@ -72,8 +92,7 @@ public class BlogController {
             @RequestParam String title,
             @RequestParam MultipartFile image,
             @RequestParam String anons,
-            @RequestParam String full_text,
-            Model model) throws IOException {
+            @RequestParam String full_text) throws IOException {
         String imageUrl = imageService.saveToTheFileSystem(image);
         Post post = new Post(title, anons, full_text);
         post.setPhotoUrl(imageUrl);
@@ -93,7 +112,6 @@ public class BlogController {
         return "blog_more";
     }
 
-
     @GetMapping("/blog/{id}/edit")
     public String blogEdit(@PathVariable(value = "id") long id, Model model) {
         if (!postRepository.existsById(id)) {
@@ -106,9 +124,10 @@ public class BlogController {
         return "blog_edit";
     }
 
-
     @PostMapping("/blog/{id}/edit")
-    public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String anons, @RequestParam String full_text, Model model) {
+    public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String title,
+                                 @RequestParam String anons,
+                                 @RequestParam String full_text) {
         Post post = postRepository.findById(id).orElseThrow();
         post.setTitle(title);
         post.setAnons(anons);
@@ -118,7 +137,7 @@ public class BlogController {
     }
 
     @PostMapping("/blog/{id}/remove")
-    public String blogPostDelete(@PathVariable(value = "id") long id, Model model) {
+    public String blogPostDelete(@PathVariable(value = "id") long id) {
         Post post = postRepository.findById(id).orElseThrow();
         postRepository.delete(post);
         return "redirect:/blog/uni";

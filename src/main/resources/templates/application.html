@@ -9,10 +9,17 @@
 <header th:insert="~{blocks/header :: header}"></header>
 <div class="container mt-5">
     <h1>Applications</h1>
+
+
+    <form action="/students/app/search" method="GET">
+        <input type="text" name="query" placeholder="Введите запрос">
+        <button type="submit">Искать</button>
+    </form>
+
     <div th:each="el:${apps}" class="alert alert-info mt-2">
         <h3 th:text="${el.title}"/>
         <p th:text="${el.anons}"/>
-        <img th:src="@{/getImage(fileName=${el.photoUrl})}" alt="Cinque Terre" class="img-responsive">
+        <img th:src="@{/getImage(fileName=${el.photoUrl})}" alt="Cinque Terre" class="img-responsive" width="700px" height="450px">
         <a th:href="'/app/'+${el.id}" class="btn btn-warning">Детальнее</a>
     </div>
 </div>

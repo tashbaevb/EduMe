@@ -13,15 +13,14 @@ import java.util.Optional;
 
 @Controller
 public class StudentsController {
-    @GetMapping("/students")
-    public String student(Model model){
-        return ("students");
-    }
-
-
 
     @Autowired
     private PostRepository postRepository;
+
+    @GetMapping("/students")
+    public String student() {
+        return ("students");
+    }
 
     @GetMapping("/students/uni")
     public String uni(Model model) {
@@ -29,7 +28,6 @@ public class StudentsController {
         model.addAttribute("posts", posts);
         return "uni";
     }
-
 
     @GetMapping("/students/uni/{id}")
     public String uniMore(@PathVariable(value = "id") long id, Model model) {
@@ -41,7 +39,6 @@ public class StudentsController {
         post.ifPresent(res::add);
         model.addAttribute("post", res);
         return "uni_more";
-
 
     }
 }

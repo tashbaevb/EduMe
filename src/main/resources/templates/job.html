@@ -9,18 +9,20 @@
 <header th:insert="~{blocks/header :: header}"></header>
 <div class="container mt-5">
     <h1>Jobs</h1>
-    <br>
-    <form action="/job" method="get" class="input-group">
+    <form action="/job" method="GET">
+        <input type="text" name="query" placeholder="Введите запрос">
+
         <label for="minPrice">Минимальная цена:</label>
         <input type="number" id="minPrice" name="minPrice" value=""/>
-        <button type="submit" class="btn btn-success">Фильтровать</button>
+        <button type="submit">Искать</button>
     </form>
     <br>
     <div th:each="el:${jobs}" class="alert alert-info mt-2">
         <h3 th:text="${el.title}"/>
         <p th:text="${el.anons}"/>
         <p th:text="${el.price}"/>
-        <img th:src="@{/getImage(fileName=${el.photoUrl})}" alt="Cinque Terre" class="img-responsive">
+        <img th:src="@{/getImage(fileName=${el.photoUrl})}" alt="Cinque Terre" class="img-responsive" width="700px"
+             height="450px">
         <a th:href="'/job/'+${el.id}" class="btn btn-warning">Детальнее</a>
     </div>
 </div>

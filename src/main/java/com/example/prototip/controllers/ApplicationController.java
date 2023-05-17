@@ -26,14 +26,12 @@ public class ApplicationController {
     @Autowired
     private ImageService imageService;
 
-
     @GetMapping("/application_blog")
     public String application_blog(Model model) {
         Iterable<App> apps = appRepository.findAll();
         model.addAttribute("apps", apps);
         return ("blog_application");
     }
-
 
     @GetMapping("/application_blog/{id}")
     public String application_blog_more(@PathVariable(value = "id") long id, Model model) {
@@ -46,7 +44,6 @@ public class ApplicationController {
         model.addAttribute("app", res);
         return "blog_application_more";
     }
-
 
     @PostMapping("/")
     public String createApplication(
@@ -64,13 +61,10 @@ public class ApplicationController {
         return "redirect:/blog";
     }
 
-
     @GetMapping("/app/add")
-    public String appAdd(Model model) {
+    public String appAdd() {
         return "app_add";
     }
-
-
 
     @GetMapping("/app/{id}")
     public String appMore(@PathVariable(value = "id") long id, Model model) {
@@ -84,7 +78,6 @@ public class ApplicationController {
         return "app_more";
     }
 
-
     @GetMapping("/app/{id}/edit")
     public String appEdit(@PathVariable(value = "id") long id, Model model) {
         if (!appRepository.existsById(id)) {
@@ -97,9 +90,10 @@ public class ApplicationController {
         return "app_edit";
     }
 
-
     @PostMapping("/app/{id}/edit")
-    public String appUpdate(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String anons, @RequestParam String fullText, Model model) {
+    public String appUpdate(@PathVariable(value = "id") long id, @RequestParam String title,
+                            @RequestParam String anons,
+                            @RequestParam String fullText) {
         App app = appRepository.findById(id).orElseThrow();
         app.setTitle(title);
         app.setAnons(anons);
@@ -109,7 +103,7 @@ public class ApplicationController {
     }
 
     @PostMapping("/app/{id}/remove")
-    public String appDelete(@PathVariable(value = "id") long id, Model model) {
+    public String appDelete(@PathVariable(value = "id") long id) {
         App app = appRepository.findById(id).orElseThrow();
         appRepository.delete(app);
         return "redirect:/application_blog";

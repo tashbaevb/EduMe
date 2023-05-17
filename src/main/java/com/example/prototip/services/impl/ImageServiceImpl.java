@@ -13,9 +13,10 @@ import java.util.UUID;
 public class ImageServiceImpl implements ImageService {
     @Value("${upload.folder}")
     String uploadFolder;
+
     @Override
     public String saveToTheFileSystem(MultipartFile image) throws IOException {
-        String resultUrl = UUID.randomUUID().toString() + "_" +  image.getOriginalFilename();
+        String resultUrl = UUID.randomUUID().toString() + "_" + image.getOriginalFilename();
         image.transferTo(new File(uploadFolder + resultUrl));
         return resultUrl;
     }

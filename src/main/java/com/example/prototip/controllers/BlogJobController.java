@@ -28,14 +28,12 @@ public class BlogJobController {
     @Autowired
     private ImageService imageService;
 
-
     @GetMapping("/job_blog")
     public String job_blog(Model model) {
         Iterable<Job> jobs = jobRepository.findAll();
         model.addAttribute("jobs", jobs);
         return ("blog_job");
     }
-
 
     @GetMapping("/job_blog/{id}")
     public String job_blog_more(@PathVariable(value = "id") long id, Model model) {
@@ -49,9 +47,8 @@ public class BlogJobController {
         return "blog_job_more";
     }
 
-
     @GetMapping("/job_blog/add")
-    public String jobAdd(Model model) {
+    public String jobAdd() {
         return "job_add";
     }
 
@@ -61,15 +58,13 @@ public class BlogJobController {
             @RequestParam MultipartFile image,
             @RequestParam String anons,
             @RequestParam String full_text,
-            @RequestParam int price,
-            Model model) throws IOException {
+            @RequestParam int price) throws IOException {
         String imageUrl = imageService.saveToTheFileSystem(image);
         Job job = new Job(title, anons, full_text, price);
         job.setPhotoUrl(imageUrl);
         jobRepository.save((job));
         return "redirect:/blog";
     }
-
 
     @GetMapping("/job_blog/{id}/edit")
     public String jobEdit(@PathVariable(value = "id") long id, Model model) {
@@ -83,9 +78,10 @@ public class BlogJobController {
         return "job_edit";
     }
 
-
     @PostMapping("/job_blog/{id}/edit")
-    public String jobUpdate(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String anons, @RequestParam String full_text, Model model) {
+    public String jobUpdate(@PathVariable(value = "id") long id, @RequestParam String title,
+                            @RequestParam String anons,
+                            @RequestParam String full_text) {
         Job job = jobRepository.findById(id).orElseThrow();
         job.setTitle(title);
         job.setAnons(anons);
@@ -95,7 +91,7 @@ public class BlogJobController {
     }
 
     @PostMapping("/job_blog/{id}/remove")
-    public String jobDelete(@PathVariable(value = "id") long id, Model model) {
+    public String jobDelete(@PathVariable(value = "id") long id) {
         Job job = jobRepository.findById(id).orElseThrow();
         jobRepository.delete(job);
         return "redirect:/job_blog";

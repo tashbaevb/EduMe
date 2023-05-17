@@ -13,7 +13,7 @@
         <h3 th:text="${el.title}"/>
         <p th:text="${el.anons}"/>
         <p th:text="${el.price}"/>
-        <img th:src="@{/getImage(fileName=${el.photoUrl})}" alt="">
+        <img th:src="@{/getImage(fileName=${el.photoUrl})}" alt="" width="700px" height="450px">
         <a th:href="'/job_blog/'+${el.id}" class="btn btn-warning">Детальнее</a>
     </div>
 </div>
