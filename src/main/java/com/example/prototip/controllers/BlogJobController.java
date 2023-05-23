@@ -94,6 +94,6 @@ public class BlogJobController {
     public String jobDelete(@PathVariable(value = "id") long id) {
         Job job = jobRepository.findById(id).orElseThrow();
         jobRepository.delete(job);
-        return "redirect:/job_blog";
+        return "redirect:/blog";
     }
 }

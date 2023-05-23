@@ -66,19 +66,7 @@ public class ApplicationController {
         return "app_add";
     }
 
-    @GetMapping("/app/{id}")
-    public String appMore(@PathVariable(value = "id") long id, Model model) {
-        if (!appRepository.existsById(id)) {
-            return "redirect:/apps";
-        }
-        Optional<App> app = appRepository.findById(id);
-        ArrayList<App> res = new ArrayList<>();
-        app.ifPresent(res::add);
-        model.addAttribute("app", res);
-        return "app_more";
-    }
-
-    @GetMapping("/app/{id}/edit")
+    @GetMapping("/application_blog/{id}/edit")
     public String appEdit(@PathVariable(value = "id") long id, Model model) {
         if (!appRepository.existsById(id)) {
             return "redirect:/blog";
@@ -90,7 +78,7 @@ public class ApplicationController {
         return "app_edit";
     }
 
-    @PostMapping("/app/{id}/edit")
+    @PostMapping("/application_blog/{id}/edit")
     public String appUpdate(@PathVariable(value = "id") long id, @RequestParam String title,
                             @RequestParam String anons,
                             @RequestParam String fullText) {
@@ -102,7 +90,7 @@ public class ApplicationController {
         return "redirect:/blog";
     }
 
-    @PostMapping("/app/{id}/remove")
+    @PostMapping("/application_blog/{id}/remove")
     public String appDelete(@PathVariable(value = "id") long id) {
         App app = appRepository.findById(id).orElseThrow();
         appRepository.delete(app);

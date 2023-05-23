@@ -15,11 +15,49 @@
 </head>
 <body>
 <header th:insert="~{blocks/header :: header}"></header>
-<div class="container mt-5">
-    <h1>School-livers</h1>
-</div>
-<a href="/students/apps">Applications</a>
-<a href="/students/uni">Uni</a>
+<section class="upcoming-meetings" id="meetings">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading">
+                    <h2>School-Livers</h2>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+                    <a href="/students/apps">
+                        <div class="col-lg-6" style="width: 500px; margin:20px">
+                            <div class="meeting-item">
+                                <div class="thumb">
+                                    <img th:src="@{/images/meeting-01.jpg}" alt="New Lecturer Meeting">
+                                </div>
+                                <div class="down-content "
+                                     style="height: 150px;display: flex; flex-direction: column;align-items: center;">
+                                    <h4>Application</h4>
+                                    <p>Intelligence is the ability to adapt to change</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-6 " style="width: 500px; margin:20px">
+                    <a href="/students/uni">
+                        <div class="meeting-item">
+                            <div class="thumb">
+                                <img th:src="@{/images/meeting-02.jpg}" alt="Online Teaching">
+                            </div>
+                            <div class="down-content"
+                                 style="height: 150px;display: flex; flex-direction: column;align-items: center;">
+                                <h4 style="text-align: center">University</h4>
+                                <p>Don’t let the noise of others’ opinions <br> drown out your own inner voice.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <div th:insert="~{blocks/footer :: footer}"></div>
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
 <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>

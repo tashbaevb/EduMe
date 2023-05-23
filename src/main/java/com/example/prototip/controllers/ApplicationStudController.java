@@ -16,27 +16,32 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/students")
 public class ApplicationStudController {
 
     @Autowired
     private AppRepository appRepository;
 
-    @GetMapping("/app/search")
+    @GetMapping("/")
+    public String home(Model model){
+        Iterable<App> apps = appRepository.findAll();
+        model.addAttribute("apps", apps);
+        return "home";
+    }
+    @GetMapping("/students/app/search")
     public String search(@RequestParam("query") String query, Model model) {
         List<App> searchResults = appRepository.findByTitleOrContentLike(query);
         model.addAttribute("apps", searchResults);
         return "application";
     }
 
-    @GetMapping("/apps")
+    @GetMapping("/students/apps")
     public String apps(Model model) {
         Iterable<App> apps = appRepository.findAll();
         model.addAttribute("apps", apps);
         return "application";
     }
 
-    @GetMapping("/apps/{id}")
+    @GetMapping("/students/apps/{id}")
     public String appsMore(@PathVariable(value = "id") long id, Model model) {
         if (!appRepository.existsById(id)) {
             return "redirect:/students/apps";
@@ -46,6 +51,5 @@ public class ApplicationStudController {
         app.ifPresent(res::add);
         model.addAttribute("app", res);
         return "app_more";
-
     }
 }

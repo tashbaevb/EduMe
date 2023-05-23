@@ -593,6 +593,7 @@ header
   }
   .header-area .container {
     padding: 0px;
+    display: flex;
   }
   .header-area .logo {
     margin-left: 30px;
@@ -897,6 +898,7 @@ section.upcoming-meetings {
   background-size: cover;
   padding-top: 230px;
   padding-bottom: 110px;
+  display: flex;
 }
 
 section.upcoming-meetings .section-heading {
