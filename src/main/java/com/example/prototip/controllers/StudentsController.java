@@ -39,6 +39,5 @@ public class StudentsController {
         post.ifPresent(res::add);
         model.addAttribute("post", res);
         return "uni_more";
-
     }
 }

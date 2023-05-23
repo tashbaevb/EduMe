@@ -12,6 +12,7 @@
     <link rel="stylesheet" th:href="@{/css/templatemo-edu-meeting.css}">
     <link rel="stylesheet" th:href="@{/css/owl.css}">
     <link rel="stylesheet" th:href="@{/css/lightbox.css}">
+    <link rel="stylesheet" th:href="@{/css/add.css}">
 </head>
 <body>
 <header th:insert="~{blocks/header :: header}"></header>
@@ -144,7 +145,7 @@
                         <div class="col-lg-6" style="width: 500px; margin:20px">
                             <div class="meeting-item">
                                 <div class="thumb">
-                                    <img th:src="@{/images/meeting-01.jpg}" alt="New Lecturer Meeting">
+                                    <img th:src="@{/images/livers.jpg}" alt="New Lecturer Meeting">
                                 </div>
                                 <div class="down-content "
                                      style="height: 150px;display: flex; flex-direction: column;align-items: center;">
@@ -159,9 +160,10 @@
                     <a href="/job">
                         <div class="meeting-item">
                             <div class="thumb">
-                                <img th:src="@{/images/meeting-02.jpg}" alt="Online Teaching">
+                                <img th:src="@{/images/jobs.jpg}" alt="Online Teaching" style="height: 333px">
                             </div>
-                            <div class="down-content" style="height: 150px;display: flex; flex-direction: column;align-items: center;">
+                            <div class="down-content"
+                                 style="height: 150px;display: flex; flex-direction: column;align-items: center;">
                                 <h4 style="text-align: center">Job List</h4>
                                 <p>Don’t let the noise of others’ opinions <br> drown out your own inner voice.</p>
                             </div>
@@ -176,19 +178,31 @@
 <section class="our-courses" id="courses" style="padding-top: 0">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12-1">
                 <div class="section-heading">
-                    <h2>Our Popular Applications</h2>
+                    <h2>Feedbacks</h2>
+                    <div id="comment-form-container">
+                        <button id="comment-form-toggle">Add Feedback</button>
+                        <br>
+                        <div id="comment-form">
+                            <form action="/feedback" method="post" id="comment-form1"
+                                  style="background-color: white; z-index: 10000">
+                                <input name="title" id="comment-text1" placeholder="Enter your Name" type="text">
+                                <textarea name="full_text" id="comment-text"
+                                          placeholder="Enter your Feedback"></textarea>
+                                <button type="submit">Add</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-12">
+            <div class="col-lg-12" style="border-radius: 15px">
                 <div class="owl-courses-item owl-carousel">
-                    <div th:each="app : ${apps}" class="item">
-                        <img th:src="@{/getImage(fileName=${app.photoUrl})}" alt="Course One">
-                        <div class="down-content">
-                            <h4 th:text="${app.title}"/>
+                    <div th:each="feed : ${feedbacks}" class="item">
+                        <div class="down-content" style="padding: 10px 15px">
+                            <p th:text="${feed.title}" style="font-weight: bold"></p>
+                            <p th:text="${feed.fullText}"/>
                         </div>
-                        <a th:href="'/students/apps/'+${app.id}">More</a>
                     </div>
                 </div>
             </div>
@@ -258,6 +272,7 @@
 <script th:src="@{/js/video.js}"></script>
 <script th:src="@{/js/slick-slider.js}"></script>
 <script th:src="@{/js/custom.js}"></script>
+<script th:src="@{/js/add.js}"></script>
 <script>
     $('.nav li:first').addClass('active');
     var showSection = function showSection(section, isAnimate) {

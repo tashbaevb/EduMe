@@ -4,6 +4,7 @@ package com.example.prototip.models;
 import javax.persistence.*;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Entity
 @Table(name = "application")
@@ -12,17 +13,12 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class App {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String title, anons, fullText, photoUrl;
-
-    public App(String title, String anons, String fullText) {
-        this.title = title;
-        this.anons = anons;
-        this.fullText = fullText;
-    }
+    Long id;
+    String title, anons, fullText, photoUrl;
 
     public String getPhotoUrl() {
         return photoUrl;
