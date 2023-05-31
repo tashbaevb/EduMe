@@ -21,12 +21,12 @@
             <input type="text" name="query" placeholder="Введите запрос">
             <button type="submit">Искать</button>
         </form>
-
         <div th:each="el, iterStat:${posts}" class="blog-card" th:classappend="${iterStat.index % 2 == 1} ? 'alt'">
             <div class="meta">
                 <img th:src="@{/getImage(fileName=${el.photoUrl})}" alt="">
                 <ul class="details">
                     <li><a th:text="${el.title}" th:href="'/students/uni/'+${el.id}"/></li>
+                    <li th:text="${el.faculty}"/>
                 </ul>
             </div>
             <div class="description">
@@ -35,13 +35,6 @@
                 <p class="read-more"><a th:href="'/students/uni/'+${el.id}">Read More</a></p>
             </div>
         </div>
-        <!--        <div th:each="el:${posts}" class="alert alert-info mt-2">-->
-        <!--            <h3 th:text="${el.title}"/>-->
-        <!--            <p th:text="${el.anons}"/>-->
-        <!--            <img th:src="@{/getImage(fileName=${el.photoUrl})}" alt="Cinque Terre" class="img-responsive" width="700px"-->
-        <!--                 height="450px">-->
-        <!--            <a th:href="'/students/uni/'+${el.id}" class="btn btn-warning">Детальнее</a>-->
-        <!--        </div>-->
     </div>
 </section>
 <div th:insert="~{blocks/footer :: footer}"></div>

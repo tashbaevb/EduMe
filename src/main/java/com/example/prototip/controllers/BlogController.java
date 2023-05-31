@@ -92,9 +92,10 @@ public class BlogController {
             @RequestParam String title,
             @RequestParam MultipartFile image,
             @RequestParam String anons,
-            @RequestParam String full_text) throws IOException {
+            @RequestParam String full_text,
+            @RequestParam String faculty) throws IOException {
         String imageUrl = imageService.saveToTheFileSystem(image);
-        Post post = new Post(title, anons, full_text);
+        Post post = new Post(title, anons, full_text, faculty);
         post.setPhotoUrl(imageUrl);
         postRepository.save(post);
         return "redirect:/blog";

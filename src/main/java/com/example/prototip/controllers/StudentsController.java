@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @Controller
 public class StudentsController {
-
     @Autowired
     private PostRepository postRepository;
 

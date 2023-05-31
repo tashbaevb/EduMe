@@ -2,9 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="TemplateMo">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <title>EDUME</title>
     <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
@@ -15,16 +12,18 @@
 </head>
 <body>
 <header th:insert="~{blocks/header :: header}"></header>
-<div class="container mt-5">
-    <div th:each="el:${app}" class="alert alert-info mt-2">
-        <h1 th:text="${el.title}"/>
-        <p th:text="${el.fullText}"/>
-        <a th:href="'/application_blog/'+${el.id} + '/edit' " class="btn btn-warning">Refactor</a><br><br>
-        <form th:action="'/application_blog/'+${el.id} + '/remove'" method="post">
-            <button class="btn btn-warning" type="submit">Delete</button>
-        </form>
+<section class="upcoming-meetings" id="meetings" style="display: flex; justify-content: center; align-items: center;">
+    <div class="container mt-5" style="width: 800px; height: 600px">
+        <div th:each="el:${app}" class="alert alert-info mt-2">
+            <h1 th:text="${el.title}"/>
+            <p th:text="${el.fullText}"/>
+            <a th:href="'/application_blog/'+${el.id} + '/edit' " class="btn btn-warning">Refactor</a><br><br>
+            <form th:action="'/application_blog/'+${el.id} + '/remove'" method="post">
+                <button class="btn btn-warning" type="submit">Delete</button>
+            </form>
+        </div>
     </div>
-</div>
+</section>
 <div th:insert="~{blocks/footer :: footer}"></div>
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
 <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>

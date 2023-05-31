@@ -1,0 +1,26 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.bullet {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.faculty-list {
+    margin-top: 10px;
+}
+
+.faculty-list li {
+    display: block;
+}
+
+.faculty-list li span {
+    display: inline-block;
+}

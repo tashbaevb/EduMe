@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="TemplateMo">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-  <title>EDUME</title>
-  <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-  <link rel="stylesheet" th:href="@{/css/fontawesome.css}">
-  <link rel="stylesheet" th:href="@{/css/templatemo-edu-meeting.css}">
-  <link rel="stylesheet" th:href="@{/css/owl.css}">
-  <link rel="stylesheet" th:href="@{/css/lightbox.css}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <title>EDUME</title>
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/fontawesome.css}">
+    <link rel="stylesheet" th:href="@{/css/templatemo-edu-meeting.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.css}">
+    <link rel="stylesheet" th:href="@{/css/lightbox.css}">
 </head>
 <body>
 <header th:insert="~{blocks/header :: header}"></header>
 <div class="container mt-5">
-  <h1>Add new uni</h1>
-  <form action="/blog/add" method="post" enctype="multipart/form-data">
-    <input type="text" name="title" placeholder="Name of post" class="form-control"><br>
-    <br><input type="file" name="image"><br>
-    <br><input type="text" name="anons" placeholder="Enter anons" class="form-control"><br>
-    <textarea type="text" name="full_text" placeholder="Enter full text" class="form-control"></textarea><br>
-    <button type="submit" class="btn btn-success">Add</button>
-  </form>
+    <h1>Add new uni</h1>
+    <form action="/blog/add" method="post" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="Name of post" class="form-control"><br>
+        <br><input type="file" name="image"><br>
+        <br><input type="text" name="anons" placeholder="Enter anons" class="form-control"><br>
+        <textarea type="text" name="full_text" placeholder="Enter full text" class="form-control"></textarea><br>
+        <button type="submit" class="btn btn-success">Add</button>
+    </form>
 </div>
 <div th:insert="~{blocks/footer :: footer}"></div>
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
@@ -36,48 +36,48 @@
 <script th:src="@{/js/slick-slider.js}"></script>
 <script th:src="@{/js/custom.js}"></script>
 <script>
-  $('.nav li:first').addClass('active');
-  var showSection = function showSection(section, isAnimate) {
-    var
+    $('.nav li:first').addClass('active');
+    var showSection = function showSection(section, isAnimate) {
+        var
             direction = section.replace(/#/, ''),
             reqSection = $('.section').filter('[data-section="' + direction + '"]'),
             reqSectionPos = reqSection.offset().top - 0;
 
-    if (isAnimate) {
-      $('body, html').animate({
-                scrollTop: reqSectionPos
-              },
-              800);
-    } else {
-      $('body, html').scrollTop(reqSectionPos);
-    }
+        if (isAnimate) {
+            $('body, html').animate({
+                    scrollTop: reqSectionPos
+                },
+                800);
+        } else {
+            $('body, html').scrollTop(reqSectionPos);
+        }
 
-  };
+    };
 
-  var checkSection = function checkSection() {
-    $('.section').each(function () {
-      var
-              $this = $(this),
-              topEdge = $this.offset().top - 80,
-              bottomEdge = topEdge + $this.height(),
-              wScroll = $(window).scrollTop();
-      if (topEdge < wScroll && bottomEdge > wScroll) {
-        var
-                currentId = $this.data('section'),
-                reqLink = $('a').filter('[href*=\\#' + currentId + ']');
-        reqLink.closest('li').addClass('active').siblings().removeClass('active');
-      }
+    var checkSection = function checkSection() {
+        $('.section').each(function () {
+            var
+                $this = $(this),
+                topEdge = $this.offset().top - 80,
+                bottomEdge = topEdge + $this.height(),
+                wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+                var
+                    currentId = $this.data('section'),
+                    reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                reqLink.closest('li').addClass('active').siblings().removeClass('active');
+            }
+        });
+    };
+
+    $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+        e.preventDefault();
+        showSection($(this).attr('href'), true);
     });
-  };
 
-  $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
-    e.preventDefault();
-    showSection($(this).attr('href'), true);
-  });
-
-  $(window).scroll(function () {
-    checkSection();
-  });
+    $(window).scroll(function () {
+        checkSection();
+    });
 </script>
 </body>
 </html>

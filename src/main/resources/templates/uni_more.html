@@ -12,15 +12,60 @@
     <link rel="stylesheet" th:href="@{/css/templatemo-edu-meeting.css}">
     <link rel="stylesheet" th:href="@{/css/owl.css}">
     <link rel="stylesheet" th:href="@{/css/lightbox.css}">
+    <link rel="stylesheet" th:href="@{/css/faculty.css}">
 </head>
 <body>
 <header th:insert="~{blocks/header :: header}"></header>
-<div class="container mt-5">
-    <div th:each="el:${post}" class="alert alert-info mt-2">
-        <h1 th:text="${el.title}"/>
-        <p th:text="${el.full_text}"/>
+<section class="upcoming-meetings" id="meetings" style="display: flex; justify-content: center; align-items: center;">
+    <div class="container mt-5" style="width: 800px; height: 600px">
+        <div th:each="el:${post}" class="alert alert-info mt-2" style="border-radius: 25px">
+            <h4 th:text="${el.title}"></h4>
+            <div class="faculty-list">
+                <ul>
+                    <li>
+                        <span class="bullet"></span>
+                        <span th:text="${el.faculty}"></span>
+                    </li>
+                </ul>
+            </div>
+            <p th:text="${el.full_text}"></p>
+            <img th:src="@{/getImage(fileName=${el.photoUrl})}" style="height: 500px" width="600px">
+        </div>
     </div>
-</div>
+</section>
+<!--<style>-->
+<!--    ul {-->
+<!--        list-style-type: none;-->
+<!--        margin: 0;-->
+<!--        padding: 0;-->
+<!--    }-->
+
+<!--    .bullet {-->
+<!--        display: inline-block;-->
+<!--        width: 10px;-->
+<!--        height: 10px;-->
+<!--        background-color: black;-->
+<!--        border-radius: 50%;-->
+<!--        margin-right: 5px;-->
+<!--    }-->
+
+<!--    .faculty-list {-->
+<!--        margin-top: 10px;-->
+<!--    }-->
+
+<!--    .faculty-list li {-->
+<!--        display: block;-->
+<!--    }-->
+
+<!--    .faculty-list li span {-->
+<!--        display: inline-block;-->
+<!--    }-->
+<!--</style>-->
+
+
+
+
+
 <div th:insert="~{blocks/footer :: footer}"></div>
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
 <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>

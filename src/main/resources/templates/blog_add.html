@@ -15,16 +15,19 @@
 </head>
 <body>
 <header th:insert="~{blocks/header :: header}"></header>
-<div class="container mt-5">
-    <h1>Add new uni</h1>
-    <form action="/blog/add" method="post" enctype="multipart/form-data">
-        <input type="text" name="title" placeholder="Name of post" class="form-control"><br>
-        <br><input type="file" name="image"><br>
-        <br><input type="text" name="anons" placeholder="Enter anons" class="form-control"><br>
-        <textarea type="text" name="full_text" placeholder="Enter full text" class="form-control"></textarea><br>
-        <button type="submit" class="btn btn-success">Add</button>
-    </form>
-</div>
+<section class="upcoming-meetings" id="meetings" style="display: flex; justify-content: center; align-items: center;">
+    <div class="container mt-5">
+        <h1>Add new uni</h1>
+        <form action="/blog/add" method="post" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Name of post" class="form-control"><br>
+            <br><input type="file" name="image"><br>
+            <br><input type="text" name="anons" placeholder="Enter anons" class="form-control"><br>
+            <br><input type="text" name="faculty" placeholder="Enter faculty" class="form-control"><br>
+            <textarea type="text" name="full_text" placeholder="Enter full text" class="form-control"></textarea><br>
+            <button type="submit" class="btn btn-success">Add</button>
+        </form>
+    </div>
+</section>
 <div th:insert="~{blocks/footer :: footer}"></div>
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
 <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>

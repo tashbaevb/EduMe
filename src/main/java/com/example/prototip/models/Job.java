@@ -14,15 +14,12 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Job {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-
     String title, anons, full_text;
     int price;
     String photoUrl;
-
     public Job(String title, String anons, String full_text, int price) {
         this.title = title;
         this.anons = anons;

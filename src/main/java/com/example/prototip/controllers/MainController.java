@@ -15,8 +15,7 @@ public class MainController {
     private FeedbackRepository feedbackRepository;
 
     @GetMapping("/about")
-    public String about(Model model) {
-        model.addAttribute("title", "About");
+    public String about() {
         return "about";
     }
 
@@ -26,14 +25,11 @@ public class MainController {
         model.addAttribute("feedbacks", feedbacks);
         return "home";
     }
+
     @PostMapping("/feedback")
-    public String createFeed(
-            @RequestParam String title,
-            @RequestParam String full_text) {
+    public String createFeed(@RequestParam String title, @RequestParam String full_text) {
         Feedback feedback = Feedback.builder()
-                .title(title)
-                .fullText(full_text)
-                .build();
+                .title(title).fullText(full_text).build();
         feedbackRepository.save(feedback);
         return "redirect:/";
     }

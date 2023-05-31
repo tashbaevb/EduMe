@@ -15,12 +15,15 @@
 </head>
 <body>
 <header th:insert="~{blocks/header :: header}"></header>
-<div class="container mt-5">
-    <div th:each="el:${app}" class="alert alert-info mt-2">
-        <h1 th:text="${el.title}"/>
-        <p th:text="${el.fullText}"/>
+<section class="upcoming-meetings" id="meetings" style="display: flex; justify-content: center; align-items: center;">
+    <div class="container mt-5" style="width: 800px; height: 600px">
+        <div th:each="el:${app}" class="alert alert-info mt-2" style="border-radius: 25px">
+            <h4 th:text="${el.title}"/>
+            <p th:text="${el.fullText}"/><br>
+            <img th:src="@{/getImage(fileName=${el.photoUrl})}" style="height: 500px" width="600px">
+        </div>
     </div>
-</div>
+</section>
 <div th:insert="~{blocks/footer :: footer}"></div>
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
 <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>

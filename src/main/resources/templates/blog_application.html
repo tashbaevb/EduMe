@@ -12,18 +12,27 @@
     <link rel="stylesheet" th:href="@{/css/templatemo-edu-meeting.css}">
     <link rel="stylesheet" th:href="@{/css/owl.css}">
     <link rel="stylesheet" th:href="@{/css/lightbox.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <header th:insert="~{blocks/header :: header}"></header>
-<div class="container mt-5">
-    <h1>Applications</h1>
-    <div th:each="el:${apps}" class="alert alert-info mt-2">
-        <h3 th:text="${el.title}"/>
-        <p th:text="${el.anons}"/>
-        <img th:src="@{/getImage(fileName=${el.photoUrl})}" alt="Cinque Terre" class="img-responsive">
-        <a th:href="'/application_blog/'+${el.id}" class="btn btn-warning">Детальнее</a>
+<section class="upcoming-meetings" id="meetings" style="display: flex; justify-content: center; align-items: center;">
+    <div>
+        <div th:each="el, iterStat:${apps}" class="blog-card" th:classappend="${iterStat.index % 2 == 1} ? 'alt'">
+            <div class="meta">
+                <img th:src="@{/getImage(fileName=${el.photoUrl})}" alt="">
+                <ul class="details">
+                    <li><a th:href="'/application_blog/'+${el.id}">Read more</a></li>
+                </ul>
+            </div>
+            <div class="description">
+                <h1 th:text="${el.title}"/>
+                <p th:text="${el.anons}"/>
+                <p class="read-more"><a th:href="'/application_blog/'+${el.id}">Read More</a></p>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 <div th:insert="~{blocks/footer :: footer}"></div>
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
 <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>

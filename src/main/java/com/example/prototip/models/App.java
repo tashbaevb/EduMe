@@ -19,11 +19,9 @@ public class App {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     String title, anons, fullText, photoUrl;
-
     public String getPhotoUrl() {
         return photoUrl;
     }
-
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
