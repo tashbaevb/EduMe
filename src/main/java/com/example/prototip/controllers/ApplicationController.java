@@ -78,6 +78,11 @@ public class ApplicationController {
         return "app_edit";
     }
 
+    @GetMapping("he")
+    public String he() {
+        return "hello";
+    }
+
     @PostMapping("/application_blog/{id}/edit")
     public String appUpdate(@PathVariable(value = "id") long id, @RequestParam String title,
                             @RequestParam String anons,
